@@ -14,7 +14,7 @@ function addApparelAssortment(store) {
   if (store.settings.banner === 'Rare denim. Real vintage. Real style.') store.settings.banner = apparelBanner;
 
   for (const { category, id, name, group, sizes, color, price } of apparelSamples) {
-    let cat = store.categories.indexOf(category);
+    let cat = store.categories.findIndex((name, index) => name === category && !store.categoryInfo?.[index]?.deleted);
     if (cat === -1) cat = store.categories.push(category) - 1;
     for (const size of sizes) {
       const variantId = id + '-' + size.toLowerCase();
