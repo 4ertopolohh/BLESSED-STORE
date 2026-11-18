@@ -671,7 +671,7 @@ function vintageJeans(p){
  }).slice(0,3);
  return '<section class="vintage-jeans" aria-labelledby="vintage-jeans-title">'+
    '<div class="vintage-heading"><h2 id="vintage-jeans-title">Смотреть больше джинс</h2>'+
-   link('Все джинсы','catalog/'+p.cat,'vintage-link')+'</div><div class="vintage-grid">'+
+   '<a class="vintage-link" href="index.html">Все джинсы</a></div><div class="vintage-grid">'+
    picks.map(item=>'<a class="vintage-card" href="#product/'+item.id+'"><img loading="lazy" src="'+photo(item)+'" alt=""><div><strong>'+escapeText(item.name)+'</strong><small>'+escapeText(item.size)+'</small><b>'+rub(item.price)+'</b></div></a>').join('')+
    '</div></section>';
 }
