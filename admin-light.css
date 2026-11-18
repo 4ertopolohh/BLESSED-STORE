@@ -8,7 +8,7 @@ h1,h2,h3 { font-family: Unbounded; letter-spacing: -.04em; }
 h1 { font-size: clamp(21px,2.6vw,36px); }
 h2 { font-size: clamp(16px,1.6vw,24px); }
 button,.navitem,input,textarea,.pill,summary { border-radius: var(--radius); }
-button.primary,.navitem.on { background: var(--blue); color: white; }
+button.primary,button.primary:hover,.navitem.on { background: var(--blue); color: white; }
 .navitem.on svg { color: white; }
 button:active { transform: scale(.98); }
 #content { animation: arrive .25s ease-out; }
@@ -47,3 +47,33 @@ dialog[open] { opacity: 1; transform: translateY(0); }
 }
 #rail:is(:hover,:focus-within,.pinned,.open) .rail-wordmark { width: 144px; margin-inline: 16px; }
 @media (prefers-reduced-motion: reduce) { .rail-wordmark { transition: none; } }
+:root { --store-control: #eaede7; --chart-line: #3546db; }
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #141723;
+  --panel: #202536;
+  --line: #383f58;
+  --ink: #f3f4fc;
+  --mute: #b1bbd1;
+  --store-control: #292f43;
+  --chart-line: #aab7ff;
+  --blue: #4656d8;
+}
+.metric { background: var(--panel); }
+.metric:nth-child(2),.metric:nth-child(2) small { color: var(--text); }
+input:is([type="checkbox"],[type="radio"]):not(:checked) { background: var(--store-control); }
+:root[data-theme="dark"] .rail-wordmark { filter: brightness(0) invert(.92); }
+.admin-head-actions { display: flex; align-items: center; gap: 8px; flex: none; }
+@media (max-width:700px) {
+  .admin-head-actions { gap: 4px; }
+  .theme-toggle { width: 52px; }
+}
+@media (max-width:390px) {
+  header .brand { font-size: 13px; }
+  header .brand small { display: none; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  :root, :is(header,.panel,.metric,button,input,select,textarea,th,td,a) {
+    transition: background-color .24s ease,color .24s ease;
+  }
+}
