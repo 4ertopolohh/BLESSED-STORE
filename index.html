@@ -225,21 +225,39 @@ main { flex: 1; width: 100%; min-height: 0; padding-bottom: clamp(32px, 6vw, 72p
 .head-review[aria-current=page] { background: #241d17; border-radius: 3px; }
 .head-review img { width: 20px; height: 20px; }
 .reviews-page { padding-block: clamp(30px, 6vw, 78px); }
+.reviews-note { margin-top: 6px; color: var(--muted); font-size: 13px; }
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(12px, 2vw, 24px);
+  margin-top: 24px;
+}
 .review-card {
-  max-width: 680px;
-  margin-top: 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   padding: clamp(16px, 4vw, 36px);
+  border-radius: 4px;
   background: #211a15;
   overflow-wrap: anywhere;
 }
-.review-card header { position: static; background: transparent; border: 0; }
 .review-card h2 { font-size: clamp(19px, 3vw, 25px); color: #e2c49d; }
 .review-card blockquote {
   margin: 20px 0 24px;
   font: clamp(17px, 2vw, 22px)/1.55 var(--serif);
 }
-.review-card .telegram-link { min-height: 44px; color: #dfbd90; }
-.review-card .telegram-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+.review-card .telegram-link {
+  min-height: 44px;
+  margin-top: auto;
+  padding: 8px 12px;
+  border-radius: 4px;
+  color: #dfbd90;
+  background: #2b221a;
+}
+.review-card .telegram-link:hover { background: #423024; color: #f0d7b3; }
+@media (max-width: 620px) {
+  .reviews-grid { grid-template-columns: 1fr; }
+}
 @media (min-width: 1024px) { .head-start { display: none; } }
 @media (max-width: 470px) {
   .head-start .iconbtn { width: 36px; }
@@ -525,14 +543,18 @@ function storefrontFooter(){
    '<nav aria-label="Мои покупки">'+link('Избранное','favorites','footer-link')+link('Недавно просмотренные','recent','footer-link')+link('Корзина','cart','footer-link')+'<small>Избранное и история сохраняются на этом устройстве.</small></nav></div>';
 }
 function reviews(){
- const review={
-   author:'@denim_demo',
-   text:'Взял Levi’s 527. Сравнил замеры со своими джинсами, и пара села как надо. Заказ забрал в пункте выдачи.',
-   url:telegramUrl
- };
- return '<section class="page reviews-page"><h1>Отзывы</h1><article class="review-card"><header><h2>'+escapeText(review.author)+'</h2><small>Тестовый отзыв</small></header>'+
-   '<blockquote><p>'+escapeText(review.text)+'</p></blockquote>'+
-   '<a class="telegram-link" href="'+escapeText(review.url)+'"><span class="figma-icon telegram-icon" aria-hidden="true"></span>Открыть в Telegram</a></article></section>';
+ const examples=[
+   ['@denim_demo','Взял Levi’s 527. Сравнил замеры со своими джинсами, и пара села как надо. Заказ забрал в пункте выдачи.'],
+   ['@bootcut_demo','Долго искал буткат без сильного клёша. По фото было понятно, как штанина ложится на ботинок.'],
+   ['@indigo_demo','Цвет индиго вживую такой же, как на фото. Отдельно пригодились крупные снимки карманов и низа штанин.'],
+   ['@workwear_demo','Брал джинсовую куртку. Перед заказом сверил длину рукава со своей, размер подошёл.'],
+   ['@vintage_demo','Выбрал джинсы с потёртостями. Состояние совпало с описанием, а посылку было удобно забрать по пути домой.']
+ ];
+ return '<section class="page reviews-page"><h1>Отзывы</h1><p class="reviews-note">Демонстрационные данные</p><div class="reviews-grid">'+
+   examples.map(([author,text])=>'<article class="review-card"><h2>'+escapeText(author)+'</h2>'+
+     '<blockquote><p>'+escapeText(text)+'</p></blockquote>'+
+     '<a class="telegram-link" href="'+telegramUrl+'"><span class="figma-icon telegram-icon" aria-hidden="true"></span>Открыть в Telegram</a></article>').join('')+
+   '</div></section>';
 }
 const waistFromSize=size=>Number(size.match(/^W(\d+)(?:\s*L\d+)?$/i)?.[1]);
 const guideWaists=[28,29,30,31,32,33,34,35,36,37,38];
