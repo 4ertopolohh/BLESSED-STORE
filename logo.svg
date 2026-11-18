@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 105" role="img" aria-labelledby="name">
+  <title id="name">BLESSLED</title>
+  <defs>
+    <path id="b" fill-rule="evenodd" d="M0 0h38l12 10v20l-9 8 10 9v23L39 80H0v-9h7V9H0Zm23 10v23h8l5-4V14l-5-4Zm0 33v27h8l5-5V48l-5-5Z"/>
+    <path id="l" d="M0 0h31v9h-8v60h13l4-17h10v28H0v-9h7V9H0Z"/>
+    <path id="e" d="M0 0h50v23H40l-5-13H23v24h9v-7h9v26h-9v-8h-9v25h13l4-15h10v25H0v-9h7V9H0Z"/>
+    <path id="s" d="M11 0h37v24H37l-5-14h-9l-6 5v11l32 19v25L37 80H1V54h11l5 16h10l6-5V53L1 34V10Z"/>
+    <path id="d" fill-rule="evenodd" d="M0 0h38l14 12v56L38 80H0v-9h7V9H0Zm23 10v60h8l5-5V15l-5-5Z"/>
+  </defs>
+  <g fill="#c9a46e">
+    <use href="#b" transform="translate(5 20) skewY(-7)"/>
+    <use href="#l" transform="translate(66 13) skewY(-5)"/>
+    <use href="#e" transform="translate(126 8) skewY(-3)"/>
+    <use href="#s" transform="translate(186 5) skewY(-1)"/>
+    <use href="#s" transform="translate(245 4) skewY(1)"/>
+    <use href="#l" transform="translate(304 6) skewY(3)"/>
+    <use href="#e" transform="translate(364 9) skewY(5)"/>
+    <use href="#d" transform="translate(424 14) skewY(7)"/>
+  </g>
+</svg>
