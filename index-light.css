@@ -84,40 +84,53 @@
 :root[data-theme="dark"] .collection:first-child :is(small,strong) { color: var(--text); }
 
 .theme-toggle {
+  --switch-inset: 3px;
   position: relative;
   display: inline-grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   place-items: center;
   flex: none;
   width: 64px;
   height: 44px;
+  padding-inline: var(--switch-inset);
   border-radius: var(--radius);
   isolation: isolate;
 }
+.theme-toggle:active:not(:disabled) { transform: none; }
 .theme-toggle::before {
   content: "";
   position: absolute;
   inset: 6px 0;
   border-radius: var(--radius);
   background: var(--store-control);
+  transition: background-color .24s ease;
   z-index: -2;
 }
 .theme-knob {
   position: absolute;
-  left: 4px;
-  width: calc(50% - 4px);
+  left: var(--switch-inset);
+  width: calc(50% - var(--switch-inset));
   height: 26px;
-  border-radius: 10px;
+  border-radius: 11px;
   background: #3546db;
-  transition: transform .28s var(--ease);
+  transform: translateX(0);
+  transition: transform .28s cubic-bezier(.25,.8,.25,1);
   z-index: -1;
 }
-.theme-toggle[aria-pressed="true"] .theme-knob { transform: translateX(calc(100% + 4px)); }
-.theme-sun,.theme-moon { width: 16px; height: 16px; background: center / contain no-repeat; transition: opacity .24s,filter .24s; }
+.theme-toggle[aria-pressed="true"] .theme-knob { transform: translateX(100%); }
+.theme-sun,.theme-moon {
+  width: 16px;
+  height: 16px;
+  background: center / contain no-repeat;
+  transition: opacity .22s ease,filter .22s ease;
+}
 .theme-sun { background-image: url("icons/theme-sun.svg"); }
-.theme-moon { background-image: url("icons/theme-moon.svg"); filter: brightness(.24); }
-.theme-toggle[aria-pressed="true"] .theme-sun { opacity: .68; }
-.theme-toggle[aria-pressed="true"] .theme-moon { filter: none; }
+.theme-moon { background-image: url("icons/theme-moon.svg"); filter: brightness(.34); }
+.theme-toggle[aria-pressed="true"] .theme-sun { opacity: .72; }
+.theme-toggle[aria-pressed="true"] .theme-moon { filter: brightness(1); }
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle::before,.theme-knob,.theme-sun,.theme-moon { transition: none; }
+}
 @media (max-width:1023px) {
   .head { display: grid; grid-template-columns: auto minmax(0,1fr) auto; gap: 4px; }
   .headcenter { position: static; transform: none; justify-self: center; min-width: 0; max-width: 100%; }
