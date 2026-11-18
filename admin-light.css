@@ -1,0 +1,16 @@
+.panel,.metric,dialog,.tablewrap { border-radius: 20px; }
+.metric { min-width: 0; padding: clamp(14px,2vw,28px); background: white; }
+.metric:first-child { background: var(--blue); color: white; }
+.metric:first-child small { color: white; }
+.metric:nth-child(2) { background: var(--lime); }
+.metric strong { font: 580 clamp(19px,2.1vw,36px)/1.2 Unbounded; letter-spacing: -.065em; overflow-wrap: anywhere; }
+h1,h2,h3 { font-family: Unbounded; letter-spacing: -.04em; }
+h1 { font-size: clamp(21px,2.6vw,36px); }
+h2 { font-size: clamp(16px,1.6vw,24px); }
+button,.navitem,input,textarea,.pill,summary { border-radius: 12px; }
+button.primary,.navitem.on { background: var(--blue); color: white; }
+.navitem.on svg { color: white; }
+button:active { transform: scale(.98); }
+#content { animation: arrive .25s ease-out; }
+@keyframes arrive { from { opacity: .6; transform: translateY(4px); } }
+@media(prefers-reduced-motion:reduce) { #content { animation: none; } }
