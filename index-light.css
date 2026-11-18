@@ -1,0 +1,30 @@
+.hero { margin: 12px var(--gutter) 0; padding: 0; border-radius: 28px; overflow: hidden; background: var(--blue); color: white; }
+.hero-frame { padding: 0; display: grid; grid-template-columns: 1.1fr 1fr; text-align: left; }
+.hero-frame::before, .hero-frame::after { content: none; }
+.hero-copy { padding: clamp(22px,4vw,64px); align-self: center; }
+.shop-name { font: 700 clamp(28px,5vw,80px)/1 Unbounded; letter-spacing: -.075em; }
+.hero h1 { margin: 20px 0 0; color: white; font: 500 clamp(20px,2.2vw,34px)/1.2 Manrope; }
+.hero .stock { color: white; }
+.hero .btn, .hero .btn:hover, .flag, .collection:first-child { background: var(--lime); color: var(--text); }
+.featured-photo { position: relative; min-width: 0; display: block; }
+.featured-photo img { width: 100%; height: 100%; position: absolute; object-fit: cover; }
+.featured-photo span { position: absolute; bottom: 16px; left: 16px; background: white; color: var(--text); padding: 7px 15px; border-radius: 20px; }
+.collection,.card,.surface,.empty,.rowlink,dialog,.gallerymain,.cover,.sheet { border-radius: 20px; }
+.collection { padding: 18px; text-align: left; align-content: space-between; }
+.collection strong { font: 550 clamp(14px,1.8vw,24px) Unbounded; }
+.collection:nth-child(2) { background: #e3e7ff; }
+.btn,.hero .btn,.filterbtn,.choice,.flag { border-radius: 32px; }
+.btn.primary,.btn.primary:hover,.count { background: var(--blue); color: white; }
+.wordmark img,.site-footer img[src="logo.svg"] { filter: brightness(0); }
+.heart,.heart.iconbtn,.iconbtn[data-act="close"],.iconbtn[data-act="share"] { width: auto; height: auto; min-height: 34px; padding: 6px 10px; font: 700 11px Manrope; border-radius: 20px; background: white; color: var(--text); }
+.heart[aria-pressed=true] { background: var(--lime); }
+.bottomnav .active,.desktopnav .active,.plain,.price { color: var(--blue); }
+@media (max-width:640px) {
+  .hero-frame { grid-template-columns: 1fr; }
+  .featured-photo { height: clamp(135px,43vw,225px); }
+  .hero .btn { margin-top: 16px; }
+  .pagetitle { font-size: 16px; }
+}
+.featured-photo { background: #e7e9e3; }
+.featured-photo img { object-fit: contain; }
+.backtop,.qty button { width: auto; min-width: 44px; padding-inline: 8px; font-size: 11px; }

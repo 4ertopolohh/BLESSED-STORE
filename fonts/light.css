@@ -1,0 +1,22 @@
+@font-face {
+  font-family: Manrope;
+  src: url("Manrope.ttf") format("truetype");
+  font-weight: 400 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: Unbounded;
+  src: url("Unbounded.ttf") format("truetype");
+  font-weight: 400 800;
+  font-display: swap;
+}
+:root {
+  --paper: #f6f6f0;
+  --blue: #3546db;
+  --lime: #c2f246;
+  --text: #1c2430;
+  --sans: Manrope;
+  --serif: Unbounded;
+}
+:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+button:active:not(:disabled), .btn:active { transform: scale(.97); }
