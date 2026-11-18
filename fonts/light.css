@@ -20,3 +20,4 @@
 }
 :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
 button:active:not(:disabled), .btn:active { transform: scale(.97); }
+:root { --radius: 14px; }
