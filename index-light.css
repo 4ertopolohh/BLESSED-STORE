@@ -150,3 +150,19 @@
 @media (max-width: 767px) {
   .headcenter > .wordmark { width: clamp(72px, 20vw, 96px); }
 }
+.head-actions { gap: 8px; }
+.head-actions .head-telegram {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+}
+.head-actions .bag { flex: 0 0 40px; width: 40px; height: 40px; }
+.head-actions .theme-toggle { flex-shrink: 0; }
+@media (max-width: 420px) {
+  .head-actions { gap: 6px; }
+  .head-actions .head-telegram,.head-actions .bag {
+    width: 36px;
+    height: 36px;
+    flex-basis: 36px;
+  }
+}
