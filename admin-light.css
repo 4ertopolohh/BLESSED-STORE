@@ -34,3 +34,16 @@ dialog[open] { opacity: 1; transform: translateY(0); }
 @starting-style { dialog[open] { opacity: 0; transform: translateY(8px); } }
 @media (prefers-reduced-motion: reduce) { dialog { transition: none; } }
 .brand,.plot,.tablewrap,.choice-trigger,.selectbox { border-radius: var(--radius); }
+.rail-wordmark {
+  display: block;
+  width: 48px;
+  height: 40px;
+  margin: 10px 9px;
+  object-fit: contain;
+  object-position: left center;
+  filter: brightness(0);
+  flex: none;
+  transition: width .24s var(--ease), margin .24s var(--ease);
+}
+#rail:is(:hover,:focus-within,.pinned,.open) .rail-wordmark { width: 144px; margin-inline: 16px; }
+@media (prefers-reduced-motion: reduce) { .rail-wordmark { transition: none; } }
