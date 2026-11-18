@@ -147,3 +147,6 @@
   .featured-slide,.featured-slide.is-current { transition: none; }
 }
 .hero-frame:not(:has(.featured-carousel)) { grid-template-columns: minmax(0,1fr); }
+@media (max-width: 767px) {
+  .headcenter > .wordmark { width: clamp(72px, 20vw, 96px); }
+}

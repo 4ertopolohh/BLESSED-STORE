@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f6f6f0"><title>BLESSED STORE · Винтажная одежда</title>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f6f6f0"><title>BLESSED STORE · Брендовая одежда</title>
 
 <script>
 try { document.documentElement.dataset.theme = localStorage.getItem('blessed.lightTheme') || 'light'; } catch {}
@@ -402,7 +402,7 @@ main { flex: 1; width: 100%; min-height: 0; padding-bottom: clamp(32px, 6vw, 72p
 .jeans-size-guide[open] summary::after { transform: rotate(180deg); }
 </style><link rel="stylesheet" href="theme-toggle.css">
 <link rel="stylesheet" href="index-light.css"><link rel="stylesheet" href="storefront-responsive.css"></head><body>
-<header><div class="head" id="head"></div></header><main id="main"><section class="hero"><div class="hero-frame"><img class="hero-logo" src="logo.svg" width="480" height="105" alt="BLESSLED"><h1>Винтажная одежда любимых брендов</h1><a class="btn" href="#catalog">Смотреть каталог</a></div></section></main><footer class="site-footer" id="footer"></footer><nav class="bottomnav" id="nav" aria-label="Основная навигация"></nav><button id="top" class="backtop iconbtn" hidden aria-label="Наверх"></button><dialog id="modal" aria-labelledby="dialogTitle"><div class="inside" id="dialogBody"></div></dialog><div class="toast" id="toast" role="status"></div>
+<header><div class="head" id="head"></div></header><main id="main"><section class="hero"><div class="hero-frame"><img class="hero-logo" src="logo.svg" width="480" height="105" alt="BLESSLED"><h1>Брендовая одежда любимых брендов</h1><a class="btn" href="#catalog">Смотреть каталог</a></div></section></main><footer class="site-footer" id="footer"></footer><nav class="bottomnav" id="nav" aria-label="Основная навигация"></nav><button id="top" class="backtop iconbtn" hidden aria-label="Наверх"></button><dialog id="modal" aria-labelledby="dialogTitle"><div class="inside" id="dialogBody"></div></dialog><div class="toast" id="toast" role="status"></div>
 <script src="light-assortment.js"></script>
 <script src="light-measurements.js"></script>
 <script>
@@ -557,7 +557,7 @@ function advanceHero(){
  next.classList.add('is-current');
 }
 
-function home(){return '<section class="hero"><div class="hero-frame"><div class="hero-copy"><strong class="shop-name">BLESSLED</strong><h1>'+escapeText(store.settings.banner)+'</h1>'+link('Смотреть каталог','catalog')+'<p class="stock">'+goods(available.length)+' в наличии · '+available.filter(p=>p.fresh).length+' новые</p></div>'+heroCarousel()+'</div></section><section class="section">'+sectionHead('Коллекции','Все товары','catalog')+'<div class="collections">'+cats.map((c,i)=>({c,i,meta:store.categoryInfo?.[i]||{}})).filter(x=>!x.meta.hidden&&!x.meta.deleted).sort((a,b)=>(a.meta.position??a.i)-(b.meta.position??b.i)).map(({c,i,meta})=>link('<strong>'+escapeText(c)+'</strong>'+ (meta.description?'<small>'+escapeText(meta.description)+'</small>':'')+'<small>'+goods(available.filter(p=>p.cat===i).length)+'</small>','catalog/'+i,'collection')).join('')+'</div></section><section class="section">'+sectionHead('Новые поступления','Смотреть все','catalog')+grid((store.settings.selection.length?store.settings.selection.map(find).filter(p=>p?.stock):latestArrivals()).slice(0,4))+'</section>'+storeGuide()}
+function home(){return '<section class="hero"><div class="hero-frame"><div class="hero-copy"><strong class="shop-name">BLESSLED</strong><h1>'+escapeText(['Rare denim. Real vintage. Real style.','Винтажная одежда любимых брендов'].includes(store.settings.banner)?'Одежда любимых брендов':store.settings.banner)+'</h1>'+link('Смотреть каталог','catalog')+'<p class="stock">'+goods(available.length)+' в наличии · '+available.filter(p=>p.fresh).length+' новые</p></div>'+heroCarousel()+'</div></section><section class="section">'+sectionHead('Коллекции','Все товары','catalog')+'<div class="collections">'+cats.map((c,i)=>({c,i,meta:store.categoryInfo?.[i]||{}})).filter(x=>!x.meta.hidden&&!x.meta.deleted).sort((a,b)=>(a.meta.position??a.i)-(b.meta.position??b.i)).map(({c,i,meta})=>link('<strong>'+escapeText(c)+'</strong>'+ (meta.description?'<small>'+escapeText(meta.description)+'</small>':'')+'<small>'+goods(available.filter(p=>p.cat===i).length)+'</small>','catalog/'+i,'collection')).join('')+'</div></section><section class="section">'+sectionHead('Новые поступления','Смотреть все','catalog')+grid((store.settings.selection.length?store.settings.selection.map(find).filter(p=>p?.stock):latestArrivals()).slice(0,4))+'</section>'+storeGuide()}
 const option=(v,t,sel)=>'<option value="'+escapeText(v)+'" '+(String(v)===String(sel)?'selected':'')+'>'+escapeText(t)+'</option>';
 function catalog(sold){return '<section class="page"><h1>'+(sold?'Продано':'Все товары')+'</h1><p class="sub" id="resultCount"></p><div class="searchbar"><div class="searchbox">'+icon('search')+'<input type="search" id="search" aria-label="Поиск товаров" placeholder="Поиск товаров..." value="'+escapeText(filters.q)+'"></div><button type="button" class="filterbtn" data-act="filters" aria-controls="filterPanel" aria-expanded="false">Фильтры</button></div>'+filterPanel(sold)+'<div class="between sort"><span>'+(sold?'Архив продаж':'Актуальный каталог')+'</span><select aria-label="Сортировка" id="sort">'+[['recent','Сначала новые'],['low','Сначала дешевле'],['high','Сначала дороже'],['name','По названию']].map(([v,t])=>option(v,t,filters.sort)).join('')+'</select></div><div id="results"></div></section>'}
 function updateResults(){const sold=current==='sold';let list=items.filter(p=>Boolean(p.stock)!==sold&&(!filters.q||[p.name,p.size,p.color,cats[p.cat]].join(' ').toLowerCase().includes(filters.q.trim().toLowerCase()))&&(filters.cat===''||p.cat===Number(filters.cat))&&(!filters.color||filters.color===p.color)&&(!filters.size||filters.size===p.size)&&(!filters.fresh||p.fresh));if(filters.sort==='low'||filters.sort==='high')list.sort((a,b)=>(a.price-b.price)*(filters.sort==='low'?1:-1));if(filters.sort==='name')list.sort((a,b)=>a.name.localeCompare(b.name,'ru'));$('#resultCount').textContent=goods(list.length)+(sold?' в архиве':' в наличии');$('.filterbtn').classList.toggle('on',filters.cat!==''||!!filters.color||!!filters.size||filters.fresh);$('#results').innerHTML=list.length?grid(list):empty('Ничего не найдено','Попробуйте другой запрос или измените фильтры.',btn('Сбросить поиск и фильтры','reset'));observeCards()}
@@ -589,7 +589,7 @@ function storeGuide(){
  const support=store.settings.support;
  return '<div class="store-guide" id="home/guide">'+
    '<section class="section guide-about" aria-labelledby="guide-title"><h2 id="guide-title">О магазине</h2>'+
-   '<div><p>'+escapeText(store.settings.info||'Брендовая винтажная одежда')+'</p><p>В подборке есть футболки Nike, худи Champion, джинсы Levi’s и Diesel, куртки, обувь и аксессуары.</p></div></section>'+
+   '<div><p>'+escapeText(store.settings.info||'Брендовая одежда')+'</p><p>В подборке есть футболки Nike, худи Champion, джинсы Levi’s и Diesel, куртки, обувь и аксессуары.</p></div></section>'+
    '<section class="section guide-delivery" aria-labelledby="delivery-title"><div><h2 id="delivery-title">Доставка и оплата</h2><p>Отправляем заказы из Ярославля.</p></div>'+
    '<dl><div><dt>'+icon('truck')+'Доставка СДЭК</dt><dd>При оформлении выберите город, тариф и пункт выдачи.</dd></div>'+
    '<div><dt>'+icon('card')+'Демооплата</dt><dd>Проверьте сумму и пройдите тестовую оплату картой или через СБП.</dd></div></dl></section>'+
@@ -610,7 +610,7 @@ function reviews(){
    ['@bootcut_demo','Долго искал буткат без сильного клёша. По фото было понятно, как штанина ложится на ботинок.'],
    ['@indigo_demo','Цвет индиго вживую такой же, как на фото. Отдельно пригодились крупные снимки карманов и низа штанин.'],
    ['@workwear_demo','Брал джинсовую куртку. Перед заказом сверил длину рукава со своей, размер подошёл.'],
-   ['@vintage_demo','Выбрал джинсы с потёртостями. Состояние совпало с описанием, а посылку было удобно забрать по пути домой.']
+   ['@style_demo','Выбрал джинсы с потёртостями. Состояние совпало с описанием, а посылку было удобно забрать по пути домой.']
  ];
  return '<section class="page reviews-page"><h1>Отзывы</h1><p class="reviews-note">Демонстрационные данные</p><div class="reviews-grid">'+
    examples.map(([author,text])=>'<article class="review-card"><h2>'+escapeText(author)+'</h2>'+
@@ -632,7 +632,7 @@ function jeansSizeGuide(){
  return '<details class="jeans-size-guide"><summary>Таблица размеров EU</summary>'+
    '<table aria-label="Ориентир по мужским размерам джинсов"><thead><tr><th scope="col">Маркировка W</th><th scope="col">Размер EU</th><th scope="col">Талия, см</th></tr></thead><tbody>'+
    guideWaists.map(w=>'<tr><th scope="row">W'+w+'</th><td>'+europeanSize(w)+'</td><td>'+(Math.round(w*25.4)/10).toLocaleString('ru')+'</td></tr>').join('')+
-   '</tbody></table><p>Соответствие приблизительное. W — талия, L — длина по внутреннему шву, обе в дюймах. Для винтажной пары сверяйтесь с замерами в карточке.</p></details>';
+   '</tbody></table><p>Соответствие приблизительное. W — талия, L — длина по внутреннему шву, обе в дюймах. Для этой пары сверяйтесь с замерами в карточке.</p></details>';
 }
 const hasWaistSize=size=>/^W\d+/i.test(size);
 function sizeLabel({size,cat}){
