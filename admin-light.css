@@ -14,3 +14,22 @@ button:active { transform: scale(.98); }
 #content { animation: arrive .25s ease-out; }
 @keyframes arrive { from { opacity: .6; transform: translateY(4px); } }
 @media(prefers-reduced-motion:reduce) { #content { animation: none; } }
+input:is([type="checkbox"],[type="radio"]) {
+  appearance: none; width: 20px; height: 20px; min-height: 20px; padding: 0;
+  background: #e3e7ee; border-radius: 6px; vertical-align: middle;
+  transition: background-color .18s, transform .18s;
+}
+input[type="radio"] { border-radius: 50%; }
+input:is([type="checkbox"],[type="radio"]):checked { background: var(--blue) url("icons/check.svg") center / 14px no-repeat; }
+#close,#menu { width: auto; padding-inline: 10px; }
+@media (min-width:701px) {
+  aside:not(:hover,:focus-within,.pinned) #pin { padding: 10px 2px; font-size: 10px; }
+  aside:not(:hover,:focus-within,.pinned) #pin span { opacity: 1; }
+}
+dialog {
+  opacity: 0; transform: translateY(8px);
+  transition: opacity .18s, transform .18s, overlay .18s allow-discrete, display .18s allow-discrete;
+}
+dialog[open] { opacity: 1; transform: translateY(0); }
+@starting-style { dialog[open] { opacity: 0; transform: translateY(8px); } }
+@media (prefers-reduced-motion: reduce) { dialog { transition: none; } }
