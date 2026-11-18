@@ -1,0 +1,41 @@
+:root { --admin-gutter: clamp(16px,3vw,42px); }
+header,main { padding-inline: var(--admin-gutter); }
+header { min-height: 65px; height: auto; padding-block: 8px; gap: 12px; }
+header > .actions { flex: 1 1 auto; min-width: 0; flex-wrap: nowrap; }
+header > a, .admin-head-actions, header #menu { flex: none; }
+header .brand { min-width: 0; line-height: 1.2; }
+header .brand small { min-width: 0; }
+.heading { row-gap: 12px; }
+.heading h1,.panel h2,.stockrow > div,.metric strong { min-width: 0; overflow-wrap: anywhere; }
+.metrics,.columns,.pair { min-width: 0; }
+.metric strong { line-height: 1.15; }
+.pair > *, .stack > *, .row > *, .actions > * { min-width: 0; }
+.pair { grid-template-columns: repeat(2,minmax(0,1fr)); }
+.stockrow { grid-template-columns: auto minmax(0,1fr) auto; gap: clamp(8px,1.5vw,12px); }
+.tablewrap { max-width: 100%; overscroll-behavior-x: contain; }
+td { max-width: 32ch; white-space: normal; overflow-wrap: anywhere; }
+td .actions { min-width: max-content; }
+dialog { max-inline-size: calc(100% - 2 * var(--admin-gutter)); }
+dialog h2 { min-width: 0; overflow-wrap: anywhere; }
+
+@media (min-width:701px) and (max-width:1160px) {
+  body:has(#rail.pinned) .columns { grid-template-columns: minmax(0,1fr); }
+  body:has(#rail.pinned) .metrics { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  body:has(#rail.pinned) header .brand small { display: none; }
+}
+@media (max-width:700px) {
+  header { min-height: 60px; }
+  header .brand small { display: none; }
+  .metrics { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .metrics,.columns { gap: 12px; }
+  .panel,.metric { padding: clamp(12px,3vw,16px); }
+  .pair { grid-template-columns: minmax(0,1fr); }
+  dialog { width: calc(100% - 2 * var(--admin-gutter)); padding-inline: 16px; }
+}
+@media (max-width:420px) {
+  header { gap: 8px; }
+  header > .actions { gap: 8px; }
+  header .brand { font-size: clamp(12px,3.5vw,15px); }
+  header a.btn { padding-inline: 9px; }
+  .heading > :is(select,button) { max-width: 100%; }
+}
