@@ -30,6 +30,8 @@ select:not([multiple]) { appearance: none; padding-inline-end: 34px; cursor: poi
 }
 .select-shell > svg, .choice-trigger > svg { transition: transform .2s var(--ease); }
 .choice-trigger { display: flex; align-items: center; justify-content: space-between; gap: 12px; text-align: left; width: 100%; }
+.choice-trigger > span:first-child { flex: 1; }
+.choice-count { color: var(--accent); font-variant-numeric: tabular-nums; }
 .choice-trigger > svg { width: 15px; color: var(--accent); }
 .choice-trigger[aria-expanded=true] > svg { transform: rotate(180deg); }
 .choice-menu {
@@ -141,13 +143,19 @@ function enhanceSelectors(root) {
     menu.setAttribute('aria-label', caption);
     trigger.setAttribute('aria-controls', menu.id);
     // The select remains the form value source.
-    label?.after(shell);
+    if (label) label.replaceWith(shell);
     select.hidden = true;
     shell.append(trigger, menu);
 
     function updateSummary() {
       const count = select.selectedOptions.length;
-      trigger.textContent = count ? caption + ' · ' + count : caption;
+      const title = document.createElement('span');
+      const badge = document.createElement('span');
+      title.textContent = caption;
+      badge.className = 'choice-count';
+      badge.textContent = String(count);
+      trigger.replaceChildren(title, badge);
+      trigger.setAttribute('aria-label', caption + '. Выбрано: ' + count);
       trigger.insertAdjacentHTML('beforeend', icons.chevron);
     }
 
